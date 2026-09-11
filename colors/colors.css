@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    color: #202020;
+}
+
+.title-header {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.title-header h1 {
+    margin: 0;
+    font-size: clamp(1rem, 4vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 8px;
+    line-height: 1;
+}
+
+
+.logo-box-solid {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.color-search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 50px;
+}
+
+.color-search-input {
+    width: 400px;
+    padding: 14px 18px;
+
+    font-size: 16px;
+
+    border: 2px solid #ddd;
+    border-radius: 8px;
+
+    outline: none;
+}
+
+.color-search-input:focus {
+    border-color: #333;
+}
+
+#searchButton {
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #222;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background: #444;
+}
+
+
+
+.color-output {
+    margin-top: 40px;
+
+    text-align: center;
+}
+
+
+
+#colorName {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.color-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.color-search-input {
+    width: 400px;
+    padding: 14px;
+
+    font-size: 16px;
+
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.color-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.color-add-input {
+    width: 400px;
+    padding: 14px;
+
+    font-size: 16px;
+
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.color-output {
+    width: 400px;
+    min-height: 150px;
+
+    margin-top: 15px;
+    padding: 15px;
+
+    background-color: white;
+
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+#colorOutput {
+    font-size: 16px;
+}

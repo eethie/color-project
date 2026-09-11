@@ -7,20 +7,52 @@
 
     <title>Color Manager</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contacts.css">
+    <link rel="stylesheet" href="colors.css">
 </head>
 
 <body>
 
-    <header>
+    <header class="title-header">
+        <div class="logo-box-solid">
+            <span></span>
+        </div>
+
         <h1>COLOR MANAGER</h1>
     </header>
 
-    <main>
-        <h2>My colors</h2>
-        <p>Your colors will go here.</p>
-    </main>
+
+    <div class="color-search">
+        <input
+            class="color-add-input"
+            type="text"
+            id="addInput"
+            placeholder="Enter your color"
+        >
+
+        <button id="searchButton">
+            Add Color
+        </button>
+
+        <input
+            class="color-search-input"
+            type="text"
+            id="searchInput"
+            placeholder="Enter your color"
+        >
+
+        <button id="searchButton">
+            Search
+        </button>
+
+        <div class="color-output">
+            <output id="colorOutput"></output>
+        </div>
+
+
+
+
+
+    <script src="colors.js"></script>
 
 </body>
 
