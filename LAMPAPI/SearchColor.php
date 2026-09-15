@@ -2,9 +2,8 @@
 
 $inData = getRequestInfo();
 
-$id = 0;
-$firstName = "";
-$lastName = "";
+$searchResults = "";
+$searchCount = 0;
 
 $conn = new mysqli(
     "localhost",
@@ -20,43 +19,40 @@ if ($conn->connect_error)
 else
 {
     $stmt = $conn->prepare(
-        "SELECT ID, FirstName, LastName
-         FROM Users
-         WHERE Login=? AND Password=?"
+        "SELECT Name
+         FROM Colors
+         WHERE Name LIKE ?
+         AND UserID = ?"
     );
 
+    $search = "%" . $inData["search"] . "%";
+
     $stmt->bind_param(
-        "ss",
-        $inData["login"],
-        $inData["password"]
+        "si",
+        $search,
+        $inData["userId"]
     );
 
     $stmt->execute();
 
     $result = $stmt->get_result();
 
-    if ($row = $result->fetch_assoc())
+    while ($row = $result->fetch_assoc())
     {
-        $firstName = $row["FirstName"];
-        $lastName = $row["LastName"];
-        $id = $row["ID"];
+        if ($searchCount > 0)
+        {
+            $searchResults .= ",";
+        }
+
+        $searchCount++;
+
+        $searchResults .= '"' . $row["Name"] . '"';
     }
 
     $stmt->close();
     $conn->close();
 
-    if ($id == 0)
-    {
-        returnWithError("No Records Found");
-    }
-    else
-    {
-        returnWithInfo(
-            $firstName,
-            $lastName,
-            $id
-        );
-    }
+    returnWithInfo($searchResults);
 }
 
 
@@ -79,20 +75,19 @@ function sendResultInfoAsJson($obj)
 function returnWithError($err)
 {
     $retValue =
-        '{"id":0,"firstName":"","lastName":"","error":"' .
+        '{"results":[],"error":"' .
         $err . '"}';
 
     sendResultInfoAsJson($retValue);
 }
 
 
-function returnWithInfo($firstName, $lastName, $id)
+function returnWithInfo($searchResults)
 {
     $retValue =
-        '{"id":' . $id .
-        ',"firstName":"' . $firstName .
-        '","lastName":"' . $lastName .
-        '","error":""}';
+        '{"results":[' .
+        $searchResults .
+        '],"error":""}';
 
     sendResultInfoAsJson($retValue);
 }
