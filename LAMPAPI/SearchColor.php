@@ -5,12 +5,15 @@ $inData = getRequestInfo();
 $searchResults = "";
 $searchCount = 0;
 
+$env = loadEnv(__DIR__ . '/.env');
+ 
 $conn = new mysqli(
-    "localhost",
-    "TheBeast",
-    "WeLoveCOP4331",
-    "COP4331"
+    $env["DB_HOST"],
+    $env["DB_USER"],
+    $env["DB_PASS"],
+    $env["DB_NAME"]
 );
+
 
 if ($conn->connect_error)
 {
