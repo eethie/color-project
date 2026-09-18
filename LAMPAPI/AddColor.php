@@ -1,9 +1,11 @@
 <?php
 
+require_once "env_loader.php";
+
 $inData = getRequestInfo();
 
 $env = loadEnv(__DIR__ . '/../.env');
- 
+
 $conn = new mysqli(
     $env["DB_HOST"],
     $env["DB_USER"],

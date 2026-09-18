@@ -1,12 +1,14 @@
 <?php
 
+require_once "env_loader.php";
+
 $inData = getRequestInfo();
 
 $searchResults = "";
 $searchCount = 0;
 
 $env = loadEnv(__DIR__ . '/../.env');
- 
+
 $conn = new mysqli(
     $env["DB_HOST"],
     $env["DB_USER"],
