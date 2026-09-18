@@ -85,6 +85,23 @@ body {
     background: #444;
 }
 
+#addButton {
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #222;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+#addButton:hover {
+    background: #444;
+}
 
 
 .color-output {
