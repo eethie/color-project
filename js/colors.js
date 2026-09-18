@@ -74,14 +74,17 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(function (data) {
 
-                if (!Array.isArray(data) || data.length === 0) {
+                if (data.error) {
+                    colorOutput.textContent = data.error;
+                    return;
+                }
+
+                if (!Array.isArray(data.results) || data.results.length === 0) {
                     colorOutput.textContent = "No colors found.";
                     return;
                 }
 
-                colorOutput.textContent = data
-                    .map(function (item) { return item.name; })
-                    .join(", ");
+                colorOutput.textContent = data.results.join(", ");
             })
             .catch(function (err) {
                 colorOutput.textContent = "Request failed: " + err;
