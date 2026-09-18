@@ -6,7 +6,7 @@ $id = 0;
 $firstName = "";
 $lastName = "";
 
-$env = loadEnv(__DIR__ . '/.env');
+$env = loadEnv(__DIR__ . '/../.env');
  
 $conn = new mysqli(
     $env["DB_HOST"],

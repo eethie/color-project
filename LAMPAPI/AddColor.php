@@ -2,7 +2,7 @@
 
 $inData = getRequestInfo();
 
-$env = loadEnv(__DIR__ . '/.env');
+$env = loadEnv(__DIR__ . '/../.env');
  
 $conn = new mysqli(
     $env["DB_HOST"],
