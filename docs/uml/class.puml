@@ -1,0 +1,44 @@
+@startuml class
+!include style.puml
+!pragma layout smetana
+
+title Color Manager - Domain Class Diagram
+left to right direction
+hide circle
+
+class User <<entity>> {
+  {field} ID : INT {PK, auto increment}
+  {field} FirstName : VARCHAR(50)
+  {field} LastName : VARCHAR(50)
+  {field} Login : VARCHAR(50)
+  {field} Password : VARCHAR(50)
+}
+
+class Color <<entity>> {
+  {field} ID : INT {PK, auto increment}
+  {field} Name : VARCHAR(50)
+  {field} UserID : INT
+}
+
+User "0..1" -- "0..*" Color : owns\nID = UserID
+
+note top of User
+  User maps to COP4331.Users.
+  Color maps to COP4331.Colors.
+  These are domain entities; the PHP
+  endpoints use procedural functions.
+end note
+
+note bottom of Color
+  UserID is a logical reference to Users.ID.
+  No FOREIGN KEY constraint is declared,
+  so a Color may have no matching User.
+end note
+
+legend bottom
+  All fields are NOT NULL.
+  Text fields default to ''; UserID defaults to 0.
+  PK = primary key.
+endlegend
+
+@enduml

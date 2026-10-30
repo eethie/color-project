@@ -1,0 +1,69 @@
+@startuml activity
+!include style.puml
+title Color Manager - Activity Diagram
+
+start
+:Open index.html;
+
+repeat
+  :Enter username and password;
+  :Trim username;
+  if (Both values nonempty?) then (yes)
+    :Hash password with client MD5;
+    :POST login and password hash\nto Login.php;
+    :Query Users for matching\nLogin and Password;
+    if (Request failed or API error?) then (yes)
+      :Display login error;
+    else (no)
+      :Store userId and firstName\nin localStorage;
+    endif
+  else (no)
+    :Display "Please enter your\nusername and password.";
+  endif
+repeat while (Login successful?) is (no) not (yes)
+
+:Open colors.html;
+:Read userId from localStorage;
+note right
+  The same client-side guard also runs
+  when colors.html is opened directly.
+end note
+if (userId present?) then (yes)
+else (no)
+  :Redirect to index.html;
+  stop
+endif
+
+repeat
+  :Wait for Add Color or Search click;
+  if (Action?) then (Add Color)
+    :Trim color name;
+    if (Color name nonempty?) then (yes)
+      :POST userId and color\nto AddColor.php;
+      :Insert Name and UserID\ninto Colors;
+      if (Request failed or API error?) then (yes)
+        :Display error;
+      else (no)
+        :Display added confirmation\nand clear color input;
+      endif
+    else (no)
+      :Display "Enter a color name first.";
+    endif
+  else (Search)
+    :Trim search text\n(empty query allowed);
+    :POST userId and search\nto SearchColors.php;
+    :Query Colors where\nName LIKE '%' + search + '%'\nand UserID = supplied userId;
+    if (Request failed or API error?) then (yes)
+      :Display error;
+    else (no)
+      if (Results array contains names?) then (yes)
+        :Display names separated by commas;
+      else (no)
+        :Display "No colors found.";
+      endif
+    endif
+  endif
+repeat while (Page remains open?) is (yes) not (no)
+
+stop
+@enduml

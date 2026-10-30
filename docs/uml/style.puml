@@ -1,0 +1,57 @@
+' Shared presentation settings for all Color Manager UML diagrams.
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam titleFontSize 22
+skinparam titleFontColor #17324D
+skinparam ArrowColor #40566D
+skinparam ArrowThickness 1.3
+skinparam roundcorner 10
+skinparam nodesep 35
+skinparam ranksep 40
+skinparam classAttributeIconSize 0
+
+skinparam actor {
+  BorderColor #17324D
+  FontColor #17324D
+  BackgroundColor #FFFFFF
+}
+skinparam usecase {
+  BorderColor #326D95
+  FontColor #17324D
+  BackgroundColor #EFF6FB
+}
+skinparam rectangle {
+  BorderColor #326D95
+  FontColor #17324D
+  BackgroundColor #FFFFFF
+}
+skinparam class {
+  BorderColor #326D95
+  FontColor #17324D
+  BackgroundColor #EFF6FB
+  HeaderBackgroundColor #DFECF5
+}
+skinparam activity {
+  BorderColor #326D95
+  FontColor #17324D
+  BackgroundColor #EFF6FB
+  DiamondBorderColor #326D95
+  DiamondBackgroundColor #DFECF5
+  StartColor #17324D
+  EndColor #17324D
+  BarColor #17324D
+}
+skinparam note {
+  BorderColor #B5A36B
+  FontColor #514727
+  BackgroundColor #FFF9E8
+  FontSize 12
+}
+skinparam legend {
+  BorderColor #BDC9D4
+  FontColor #40566D
+  BackgroundColor #F7F9FB
+  FontSize 12
+}

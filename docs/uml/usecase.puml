@@ -1,0 +1,43 @@
+@startuml usecase
+!include style.puml
+!pragma layout smetana
+
+title Color Manager - Use Case Diagram
+left to right direction
+
+actor User
+
+rectangle "Color Manager" {
+  usecase "Sign in" as SignIn
+  usecase "Add a color" as AddColor
+  usecase "Search my colors" as SearchColors
+}
+
+User -- SignIn
+User -- AddColor
+User -- SearchColors
+
+note right of SignIn
+  Enter an existing username and password.
+  Success opens the color manager;
+  failure displays an error.
+end note
+
+note right of AddColor
+  Precondition: userId is stored in the browser.
+  Enter a nonempty color name.
+  Save the name with the supplied userId.
+end note
+
+note right of SearchColors
+  Precondition: userId is stored in the browser.
+  Show matching names for that userId.
+  An empty search lists all of their colors.
+end note
+
+legend bottom
+  Scope: implemented behavior in index.html, js/colors.js,
+  Login.php, AddColor.php, and SearchColors.php.
+endlegend
+
+@enduml
