@@ -45,7 +45,9 @@ body {
 
 .color-search {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 
     margin-top: 50px;
@@ -53,11 +55,11 @@ body {
 
 .color-search-input {
     width: 400px;
-    padding: 14px 18px;
+    padding: 14px;
 
     font-size: 16px;
 
-    border: 2px solid #ddd;
+    border: 2px solid #ccc;
     border-radius: 8px;
 
     outline: none;
@@ -104,35 +106,9 @@ body {
 }
 
 
-.color-output {
-    margin-top: 40px;
-
-    text-align: center;
-}
-
-
-
 #colorName {
     font-size: 20px;
     font-weight: bold;
-}
-
-.color-search {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin-top: 50px;
-}
-
-.color-search-input {
-    width: 400px;
-    padding: 14px;
-
-    font-size: 16px;
-
-    border: 2px solid #ccc;
-    border-radius: 8px;
 }
 
 .color-add {
@@ -159,6 +135,7 @@ body {
 
     margin-top: 15px;
     padding: 15px;
+    text-align: center;
 
     background-color: white;
 
