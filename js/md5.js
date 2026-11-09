@@ -1,7 +1,7 @@
+/* exported md5 */
 // Minimal MD5 implementation for client-side password hashing before sending to the API.
 function md5(inputString) {
   function rotateLeft(n, s) { return (n << s) | (n >>> (32 - s)); }
-  function toUnsigned(n) { return n >>> 0; }
 
   function addUnsigned(x, y) {
     var x8 = x & 0x80000000, y8 = y & 0x80000000;
@@ -44,7 +44,8 @@ function md5(inputString) {
     var numberOfWordsTemp2 = (numberOfWordsTemp1 - (numberOfWordsTemp1 % 64)) / 64;
     var numberOfWords = (numberOfWordsTemp2 + 1) * 16;
     var wordArray = new Array(numberOfWords - 1);
-    var bytePosition = 0, byteCount = 0;
+    var bytePosition;
+    var byteCount = 0;
     while (byteCount < messageLength) {
       wordCount = (byteCount - (byteCount % 4)) / 4;
       bytePosition = (byteCount % 4) * 8;
