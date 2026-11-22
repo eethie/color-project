@@ -1,4 +1,4 @@
-name: Frontend lint
+name: Lint and tests
 
 on: [push, pull_request]
 
@@ -22,8 +22,56 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install lint tools
+      - name: Install development tools
         run: npm ci --ignore-scripts
 
       - name: Run linters
         run: npm run lint
+
+  test:
+    name: Frontend unit and PHP API integration tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: colors-test-password
+          MYSQL_ROOT_HOST: '%'
+        ports:
+          - 3306/tcp
+        options: >-
+          --health-cmd="mysql --protocol=TCP -h127.0.0.1 -uroot -pcolors-test-password -e 'SELECT 1'"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js for Jest
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.5'
+          extensions: mysqli
+          coverage: none
+
+      - name: Install development tools
+        run: npm ci --ignore-scripts
+
+      - name: Run unit and integration tests
+        run: npm test -- --ci
+        env:
+          TEST_DB_HOST: 127.0.0.1
+          TEST_DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          TEST_DB_USER: root
+          TEST_DB_PASSWORD: colors-test-password

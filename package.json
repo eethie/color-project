@@ -5,13 +5,19 @@
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
     "lint:html": "htmlhint \"*.html\"",
     "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:js": "eslint \"js/**/*.js\" --max-warnings 0"
+    "lint:js": "eslint . --max-warnings 0",
+    "test": "jest --runInBand",
+    "test:unit": "jest --runInBand --selectProjects unit",
+    "test:integration": "jest --runInBand --selectProjects integration"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "eslint": "10.14.0",
     "globals": "17.14.0",
     "htmlhint": "1.9.2",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "mysql2": "3.24.6",
     "stylelint": "17.16.0",
     "stylelint-config-recommended": "18.0.0"
   }
